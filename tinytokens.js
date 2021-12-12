@@ -22,13 +22,18 @@ function TinyTokens() {
       let replacement = container
         ? callback(arguments, match[2])
         : callback(arguments);
+
+      // Add control characters to avoid an infinitive loop
+      replacement = replacement.replace(/{/g, String.fromCharCode(0) + '{');
+
       text =
         match.input.substr(0, match.index) +
         replacement +
         match.input.substr(match.index + match[0].length);
     }
 
-    return text;
+    // Return without control characters
+    return text.replace(new RegExp(String.fromCharCode(0), 'g'), '');
   };
 
   this.addToken = function (name, callback) {
