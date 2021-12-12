@@ -37,7 +37,7 @@ Output:
 Have a nice day. 😊
 ```
 
-## Working with parameters
+## Working with arguments
 You can set additional arguments inside a token. For example to define several emoticons. The first parameter in the token callback function contains an array of all arguments including the name of the token.
 
 ```js
