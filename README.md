@@ -110,6 +110,30 @@ tt.addToken('visible', function(arg, content) {
 });
 ```
 
+### If/Else
+```js
+var inputTextIf = "{{if::1::EQ::1}}Its true{{/if}}";
+var inputTextIfElse = "{{if::1::EQ::1}}Its true{{else}}its not true{{/if}}";
+
+tt.addToken('if', function(arg, content) {
+  var a = arg[1];
+  var b = arg[3];
+  var operator = arg[2];
+  var splitContent = content.split('{{else}}');
+  var result;
+				
+  switch(operator) {
+    case "EQ": result = a === b; break;
+    case "NE": result = a !== b; break;
+    case "GT": result = a > b; break;
+    case "LT": result = a < b; break;
+    default: result = false; break;
+  }
+
+  return result ? splitContent[0] : (splitContent[1] || '');
+});
+```
+
 ### Image
 ```js
 var inputText = "{{image::https://www.stevensegallery.com/320/240}}";
