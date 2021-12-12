@@ -1,2 +1,2 @@
 # TinyTokens.js
-TinyTokens is a small token system for javascript
+TinyTokens is a simple token system in javascript. You can define single tokens like "{{icon}}" or token containers like "{{strong}}text{{/strong}}".
