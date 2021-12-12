@@ -109,3 +109,13 @@ tt.addToken('visible', function(arg, content) {
   return visible ? content : '';
 });
 ```
+
+### Image
+```js
+var inputText = "{{image::https://www.stevensegallery.com/320/240}}";
+
+tt.addToken('image', function(arg) {
+  var path = arg[1];
+  return '<img src="' + path + '">';
+});
+```
