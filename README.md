@@ -54,7 +54,7 @@ Have a nice day. 😂
 ```
 
 ## Working with containers
-You can use token containers to modify textblocks. When you define a callback function with two parameters the token is automatically handled as a token container.
+You can use token containers to modify textblocks. When you define a callback function with two parameters instead of one the token is automatically handled as a token container.
 
 ```js
 var inputText = "Have a nice {{strong}}day{{/strong}}.";
