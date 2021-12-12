@@ -6,18 +6,24 @@ Furthermore you can set parameters in single tokens like ``{{emoticon::SMILING F
 Nesting of token containers is possible too.
 
 ## How to use
-Just include the [tinytokens.js](tinytokens.js) or [tinytokens.min.js](tinytokens.min.js) before your code.
+Just include the [tinytokens.js](tinytokens.js) or [tinytokens.min.js](tinytokens.min.js) before your code. And initialize the TinyTokens class.
+
+```html
+<script src="tinytokens.min.js"></script>
+<script>
+  const tt = new TinyTokens();
+  // Let's go!
+</script>
+```
 
 ## How to define a token
 You can define a token with the function "addToken".
 
 ```js
-const tt = new TinyTokens();
-
-// We define a text with the token "smiley"
+// A text with the token {{smiley}}
 var inputText = "Have a nice day. {{smiley}}";
 
-// Now we define the token
+// Definition of the {{smiley}} token
 tt.addToken("smiley", function(arg) {
   return "&#x1F60A;";
 });
