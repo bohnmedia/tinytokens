@@ -61,7 +61,7 @@ var inputText = "Have a nice {{strong}}day{{/strong}}.";
 
 // Define a second parameter in the callback function to handle the token as a container.
 tt.addToken('strong', function(arg, content) {
-  return '<strong>' + content + '<strong>';
+  return '<strong>' + content + '</strong>';
 });
 ```
 
