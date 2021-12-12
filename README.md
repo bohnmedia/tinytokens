@@ -98,7 +98,7 @@ Have a nice <span style="color:blue">day</span>.
 var inputText = "Have a nice {{visible::false}}day{{/visible}}.";
 
 tt.addToken('visible', function(arg, content) {
-  var visible = arg[1] === 'true';
+  var visible = (arg[1] !== 'false' && arg[1] !== '');
 
   return visible ? content : '';
 });
