@@ -3,8 +3,10 @@ TinyTokens is a simple token system in javascript. You can define single tokens 
 
 Furthermore you can set parameters in single tokens like ``{{emoticon::SMILING FACE WITH SMILING EYES}}`` and token containers like ``{{color::red}}text{{/color}}``.
 
+Nesting of token containers is possible too.
+
 ## How to use
-Just include the "tinytokens.js" or "tinytokens.min.js" before your code.
+Just include the [tinytokens.js](tinytokens.js) or [tinytokens.min.js](tinytokens.min.js) before your code.
 
 ## How to define a token
 You can define a token with the function "addToken".
@@ -54,14 +56,14 @@ Have a nice day. 😂
 ```
 
 ## Working with containers
-You can use token containers to modify textblocks. When you define a callback function with two parameters the token is automatically handled as a token container.
+You can use token containers to modify textblocks. When you define a callback function with two parameters instead of one the token is automatically handled as a token container.
 
 ```js
 var inputText = "Have a nice {{strong}}day{{/strong}}.";
 
 // Define a second parameter in the callback function to handle the token as a container.
 tt.addToken('strong', function(arg, content) {
-  return '<strong>' + content + '<strong>';
+  return '<strong>' + content + '</strong>';
 });
 ```
 
