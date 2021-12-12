@@ -136,7 +136,7 @@ tt.addToken('if', function(arg, content) {
 
 ### Variables
 ```js
-var inputTextIf = "{{vars::a::Hello::b::world!}}Hello World! = {{a}} {{b}}{{/vars}}";
+var inputTextIf = "{{vars::a::Hello::b::world!}}Hello world! = {{a}} {{b}}{{/vars}}";
 
 tt.addToken('vars', function(arg, content) {
   var modifiedContent = content;
