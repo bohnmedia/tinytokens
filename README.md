@@ -4,7 +4,7 @@ TinyTokens is a simple token system in javascript. You can define single tokens 
 Furthermore you can set parameters in single tokens like ``{{emoticon::SMILING FACE WITH SMILING EYES}}`` and token containers like ``{{color::red}}text{{/color}}``.
 
 ## How to use
-Just include the "tinytokens.js" or "tinytokens.min.js" before your code.
+Just include the [tinytokens.js](tinytokens.js) or [tinytokens.min.js](tinytokens.min.js) before your code.
 
 ## How to define a token
 You can define a token with the function "addToken".
