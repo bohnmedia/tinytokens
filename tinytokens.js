@@ -18,10 +18,10 @@ function TinyTokens() {
     const rgxp = new RegExp(rgxpStr, "s");
 
     while ((match = text.match(rgxp))) {
-      let parameters = match[1].split("::");
+      let arguments = match[1].split("::");
       let replacement = container
-        ? callback(parameters, match[2])
-        : callback(parameters);
+        ? callback(arguments, match[2])
+        : callback(arguments);
       text =
         match.input.substr(0, match.index) +
         replacement +
