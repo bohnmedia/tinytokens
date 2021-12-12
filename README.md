@@ -134,6 +134,21 @@ tt.addToken('if', function(arg, content) {
 });
 ```
 
+### Variables
+```js
+var inputTextIf = "{{vars::a::Hello::b::world!}}Hello World! = {{a}} {{b}}{{/vars}}";
+
+tt.addToken('vars', function(arg, content) {
+  var modifiedContent = content;
+
+  for (let i=1; i<arg.length; i += 2) {
+    modifiedContent = modifiedContent.replace(new RegExp("{{" + arg[i] + "}}", "g"), arg[i+1]);
+  }
+
+  return modifiedContent;
+});
+```
+
 ### Image
 ```js
 var inputText = "{{image::https://www.stevensegallery.com/320/240}}";
