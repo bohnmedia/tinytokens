@@ -6,18 +6,24 @@ Furthermore you can set parameters in single tokens like ``{{emoticon::SMILING F
 Nesting of token containers is possible too.
 
 ## How to use
-Just include the [tinytokens.js](tinytokens.js) or [tinytokens.min.js](tinytokens.min.js) before your code.
+Just include the [tinytokens.js](tinytokens.js) or [tinytokens.min.js](tinytokens.min.js) before your code. And initialize the TinyTokens class.
+
+```html
+<script src="tinytokens.min.js"></script>
+<script>
+  const tt = new TinyTokens();
+  // Let's go!
+</script>
+```
 
 ## How to define a token
 You can define a token with the function "addToken".
 
 ```js
-const tt = new TinyTokens();
-
-// We define a text with the token "smiley"
+// A text with the token {{smiley}}
 var inputText = "Have a nice day. {{smiley}}";
 
-// Now we define the token
+// Definition of the {{smiley}} token
 tt.addToken("smiley", function(arg) {
   return "&#x1F60A;";
 });
@@ -31,7 +37,7 @@ Output:
 Have a nice day. 😊
 ```
 
-## Working with parameters
+## Working with arguments
 You can set additional arguments inside a token. For example to define several emoticons. The first parameter in the token callback function contains an array of all arguments including the name of the token.
 
 ```js
@@ -98,8 +104,57 @@ Have a nice <span style="color:blue">day</span>.
 var inputText = "Have a nice {{visible::false}}day{{/visible}}.";
 
 tt.addToken('visible', function(arg, content) {
-  var visible = arg[1] === 'true';
+  var visible = (arg[1] !== 'false' && arg[1] !== '');
 
   return visible ? content : '';
+});
+```
+
+### If/Else
+```js
+var inputTextIf = "{{if::1::EQ::1}}Its true{{/if}}";
+var inputTextIfElse = "{{if::1::EQ::1}}Its true{{else}}its not true{{/if}}";
+
+tt.addToken('if', function(arg, content) {
+  var a = arg[1];
+  var b = arg[3];
+  var operator = arg[2];
+  var splitContent = content.split('{{else}}');
+  var result;
+				
+  switch(operator) {
+    case "EQ": result = a === b; break;
+    case "NE": result = a !== b; break;
+    case "GT": result = a > b; break;
+    case "LT": result = a < b; break;
+    default: result = false; break;
+  }
+
+  return result ? splitContent[0] : (splitContent[1] || '');
+});
+```
+
+### Variables
+```js
+var inputTextIf = "{{vars::a::Hello::b::world!}}Hello world! = {{a}} {{b}}{{/vars}}";
+
+tt.addToken('vars', function(arg, content) {
+  var modifiedContent = content;
+
+  for (let i=1; i<arg.length; i += 2) {
+    modifiedContent = modifiedContent.replace(new RegExp("{{" + arg[i] + "}}", "g"), arg[i+1]);
+  }
+
+  return modifiedContent;
+});
+```
+
+### Image
+```js
+var inputText = "{{image::https://www.stevensegallery.com/320/240}}";
+
+tt.addToken('image', function(arg) {
+  var path = arg[1];
+  return '<img src="' + path + '">';
 });
 ```
