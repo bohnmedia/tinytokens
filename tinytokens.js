@@ -37,7 +37,7 @@ function TinyTokens() {
   };
 
   this.addToken = function (name, callback) {
-    this.callbacks[name] = callback;
+    this.callbacks[name] = callback.bind(this);
   };
 
   this.replace = function (inputText) {
