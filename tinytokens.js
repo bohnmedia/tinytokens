@@ -19,12 +19,11 @@ function TinyTokens() {
 
     while ((match = text.match(rgxp))) {
       let arguments = match[1].split("::");
-      let replacement = container
-        ? callback(arguments, match[2])
-        : callback(arguments);
+      let replacement =
+        (container ? callback(arguments, match[2]) : callback(arguments)) || "";
 
       // Add control characters to avoid an infinitive loop
-      replacement = replacement.replace(/{/g, String.fromCharCode(0) + '{');
+      replacement = replacement.replace(/{/g, String.fromCharCode(0) + "{");
 
       text =
         match.input.substr(0, match.index) +
@@ -33,7 +32,7 @@ function TinyTokens() {
     }
 
     // Return without control characters
-    return text.replace(new RegExp(String.fromCharCode(0), 'g'), '');
+    return text.replace(new RegExp(String.fromCharCode(0), "g"), "");
   };
 
   this.addToken = function (name, callback) {
